@@ -13,3 +13,8 @@ jobs:
    steps:
    - name: this is frist test step
      run: echo this is abhi first pipeline in github actions
+   - name: this is second test step
+     run: echo this is abhi second pipeline in github actions
+   - name: this is 3rd test step
+     run: echo this is abhi third pipeline in github actions
+   
