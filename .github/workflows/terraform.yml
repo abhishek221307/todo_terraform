@@ -6,4 +6,10 @@ on:
       - 'main'
       - 'feature/**'
       - 'hotfix/**'
-
+jobs:
+ testjobs:
+   name: test job
+   runs-on: self-hosted
+   steps:
+   - name: this is frist test step
+     run: echo this is abhi first pipeline in github actions
