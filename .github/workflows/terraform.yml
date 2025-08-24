@@ -1,0 +1,9 @@
+name: "first workflow"
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'feature/**'
+      - 'hotfix/**'
+
