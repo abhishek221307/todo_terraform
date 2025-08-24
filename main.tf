@@ -3,27 +3,18 @@ resource "azurerm_resource_group" "polarisrg" {
   location = "Japan East"
 }
 
+
+
 resource "azurerm_virtual_network" "polaris-vnet" {
+depends_on = [ azurerm_resource_group.polarisrg ]
   name                = "polaris-network"
   address_space       = ["192.168.0.0/16"]
-  location            = azurerm_resource_group.polarisrg.location
-  resource_group_name = azurerm_resource_group.polarisrg.name
-}
-resource "azurerm_public_ip" "polaris-pip" {
-  name                = "polaris-public-ip"
-  location            = azurerm_resource_group.polarisrg.location
-  resource_group_name = azurerm_resource_group.polarisrg.name
-  allocation_method   = "Dynamic"
-  sku                 = "Basic"
+  location            = "japan east"
+  resource_group_name = "polaris-rg"
 }
 
-resource "azurerm_public_ip" "polaris-pip1" {
-  name                = "polaris-public-ip1"
-  location            = azurerm_resource_group.polarisrg.location
-  resource_group_name = azurerm_resource_group.polarisrg.name
-  allocation_method   = "Dynamic"
-  sku                 = "Basic"
-}
+
+
 resource "azurerm_subnet" "polaris-frontend" {
   name                 = "internal"
   resource_group_name  = azurerm_resource_group.polarisrg.name
@@ -46,7 +37,7 @@ resource "azurerm_network_interface" "polaris" {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.polaris-frontend.id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = azurerm_public_ip.polaris-pip.id
+    
   }
 }
 
@@ -59,7 +50,7 @@ resource "azurerm_network_interface" "polaris1" {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.polaris-backend.id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = azurerm_public_ip.polaris-pip1.id
+    
   }
 }
 
