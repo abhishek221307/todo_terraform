@@ -1,20 +1,33 @@
 name: "first workflow"
 
 on:
-  push:
-    branches:
-      - 'main'
-      - 'feature/**'
-      - 'hotfix/**'
+  workflow_dispatch:
+  
 jobs:
- testjobs:
-   name: test job
+ Terraform-jobs:
+   name: terraform job
    runs-on: self-hosted
    steps:
-   - name: this is frist test step
-     run: echo this is abhi first pipeline in github actions
-   - name: this is second test step
-     run: echo this is abhi second pipeline in github actions
-   - name: this is 3rd test step
-     run: echo this is abhi third pipeline in github actions
-   
+       - name: Azure Login
+         uses: Azure/login@v2.3.0
+         with:
+         
+          creds: # optional
+          
+          client-id: # optional
+         
+          tenant-id: # optional
+         
+          subscription-id: # optional
+        
+          enable-AzPSSession: # optional
+         
+          environment: # optional, default is azurecloud
+         
+          allow-no-subscriptions: # optional
+         
+          audience: # optional, default is api://AzureADTokenExchange
+          # The type of authentication. Supported values are SERVICE_PRINCIPAL, IDENTITY. Default value is SERVICE_PRINCIPAL
+          auth-type: # optional, default is SERVICE_PRINCIPAL
+                
+ 
